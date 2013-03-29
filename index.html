@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/underscore.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-app="dijkstraAlgorithm">
+<div ng-controller="mapManageController">
+    <div id="map" ng-click="addNode()" style="width: {{Graph.width}}px; height: {{Graph.height}}px;">
+        <div ng-repeat="path in Graph.paths"
+             class="line"
+             style="    width: {{path.width}}px;
+                        transform :rotate(-{{path.degree}}deg);
+                        -webkit-transform:rotate(-{{path.degree}}deg); /* Safari and Chrome */
+                         -webkit-transform-origin: top left;
+                        left: {{path.from.x}}px;
+                        top: {{path.from.y}}px;">
+            {{path.distance}}
+            &rarr;
+        </div>
+        <div ng-repeat="node in Graph.nodes"
+             style="position: absolute; left: {{node.x - 4}}px; top: {{node.y - 4}}px; cursor: pointer;">
+            <div class="node">&nbsp;</div>
+            <span class="nodeName">
+                {{node.name}}
+            </span>
+        </div>
+
+    </div>
+    <div class="panel">
+        <a href="#/vertexes">přehled bodů</a>
+        <a href="#/edges">Přehled hran</a>
+        <a href="#/distance">Spočítat vzdálenost</a>
+        <button ng-click="makeRandomPaths()">Všechno se vším</button>
+        <div ng-view></div>
+    </div>
+</div>
+</body>
+</html>

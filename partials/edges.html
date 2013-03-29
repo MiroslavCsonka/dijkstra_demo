@@ -1,0 +1,61 @@
+<form name="addPathForm" ng-submit="addPath(form)">
+    <h5>Přidat cestu mezi vrcholy</h5>
+    <table>
+        <tr>
+            <th> Od:</th>
+            <td>
+                <select ng-model="form.from"
+                        required="required">
+                    <option value="">-- Vyberte od --</option>
+                    <option ng-repeat="node in Graph.nodes" value="{{node.id}}">{{node.name}}</option>
+                </select>
+            </td>
+            <th> Do:</th>
+            <td>
+                <select ng-model="form.to"
+                        required="required">
+                    <option value="">-- Vyberte od --</option>
+                    <option ng-repeat="node in Graph.nodes" value="{{node.id}}">{{node.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th> Orientovaný</th>
+            <td><input type="checkbox" ng-checked="form.oriented"></td>
+            <th> Vzdálenost</th>
+            <td><input type="number" ng-model="form.distance"  required="required"></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="submit" ng-disabled="addPathForm.$invalid" value="Přidat cestu"
+                       style="width: 100%;">
+            </td>
+        </tr>
+    </table>
+</form>
+<div ng-show="Graph.paths.length > 0">
+    <h3>Přehled cest {{Graph.paths.length}}</h3>
+    <table style="max-heigh: 500px; width: 100%; overflow-y: scroll;overflow-x: hidden;">
+        <tr>
+            <th>Od:</th>
+            <th>Do:</th>
+            <th>Za</th>
+        </tr>
+        <tr ng-repeat="(index,path) in Graph.paths">
+            <td>
+                <input ng-model="path.from.name">
+            </td>
+            <td>
+                <input ng-model="path.to.name">
+            </td>
+            <td>
+                <input type="number" ng-model="path.distance">
+            </td>
+            <td>
+                <button ng-click="removePath(index)">
+                    x
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

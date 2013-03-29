@@ -1,0 +1,25 @@
+<div>
+    <h3>Přehled vrcholů <span ng-bind="howManyVertexes()"></span></h3>
+    <table style="width: 100%;">
+        <tr>
+            <th>ID</th>
+            <th>Jméno</th>
+            <th>[x:y]</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="(id,node) in Graph.nodes">
+            <th>
+                {{id}}
+            </th>
+            <th>
+                <input type="text" ng-model="node.name">
+            </th>
+            <th>
+                [{{node.x}}:{{node.y}}]
+            </th>
+            <th>
+                <a ng-click="removeNode(id)">x</a>
+            </th>
+        </tr>
+    </table>
+</div>

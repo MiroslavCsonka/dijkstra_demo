@@ -1,0 +1,34 @@
+<form name="countDistanceForm" ng-submit="countDistance(form)">
+    <h5>Spočítat vzdálenost</h5>
+    <table>
+        <tr>
+            <th> Od:</th>
+            <td>
+                <select ng-model="form.from"
+                        required="required">
+                    <option value="">-- Vyberte od --</option>
+                    <option ng-repeat="node in Graph.nodes" value="{{node.id}}">{{node.name}}</option>
+                </select>
+            </td>
+            <th> Do:</th>
+            <td>
+                <select ng-model="form.to"
+                        required="required">
+                    <option value="">-- Vyberte od --</option>
+                    <option ng-repeat="node in Graph.nodes" value="{{node.id}}">{{node.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input ng-disabled="countDistanceForm.$invalid"
+                       style="width: 100%;"
+                       type="submit"
+                       value="Spočítej to jako Pán">
+            </td>
+        </tr>
+    </table>
+</form>
+<span ng-show="response">
+    <span ng-bind="response.message"></span>
+</span>
