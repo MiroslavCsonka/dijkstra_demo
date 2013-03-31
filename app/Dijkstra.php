@@ -48,8 +48,14 @@ class Dijkstra {
 				}
 			}
 		} while (true);
+		$through = array();
+		$actualBackTract = $end;
+		while ($actualBackTract !== $start) {
+			$through[] = $actualBackTract = $this->getPrevious($actualBackTract);
+		}
+		$through = array_reverse($through);
 		return array(
-			'graph'    => $this->pernament,
+			'through'  => $through,
 			'distance' => $distanceToEnd
 		);
 	}
@@ -60,8 +66,10 @@ class Dijkstra {
 	 * @param int    $plusDistance
 	 */
 	private function indexPathsToTemp ($from, $plusDistance) {
-		foreach ($this->paths[$from] as $nodeTo => $distance) {
-			$this->addEdge($this->temp, $from, $nodeTo, $distance + $plusDistance);
+		if (isset( $this->paths[$from] )) {
+			foreach ($this->paths[$from] as $nodeTo => $distance) {
+				$this->addEdge($this->temp, $from, $nodeTo, $distance + $plusDistance);
+			}
 		}
 	}
 
@@ -107,6 +115,27 @@ class Dijkstra {
 			return;
 		}
 		$array[$from][$to] = $distance;
+	}
+
+	/**
+	 * Získá předchozí destinaci
+	 * @param string $end
+	 */
+	public function getPrevious ($end) {
+		$possible = array();
+		foreach ($this->pernament as $from => $info) {
+			if (isset( $info[$end] )) {
+				$possible[$from] = $info[$end];
+			}
+		}
+		$lowest['distance'] = PHP_INT_MAX;
+		foreach ($possible as $node => $distance) {
+			if ($distance < $lowest['distance']) {
+				$lowest['node'] = $node;
+				$lowest['distance'] = $distance;
+			}
+		}
+		return $lowest['node'];
 	}
 
 }

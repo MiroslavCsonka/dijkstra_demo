@@ -31,4 +31,8 @@
 </form>
 <span ng-show="response">
     <span ng-bind="response.message"></span>
+	Musíte jít přes
+	<ul>
+		<li ng-repeat="node in response.through">{{node}}</li>
+	</ul>
 </span>

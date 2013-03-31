@@ -115,7 +115,7 @@ application.factory 'Graph', ->
 	$scope.makeRandomPaths = ->
 		for id,from of Graph.nodes
 			for id,to of Graph.nodes
-				Graph.addPath(from, to, Math.round(Math.random() * 10))
+				Graph.addPath(from, to, (Math.round(Math.random() * 10) + 1))
 
 	$scope.countDistance = (form) ->
 		out = for path in Graph.paths

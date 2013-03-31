@@ -167,7 +167,7 @@
           _results1 = [];
           for (id in _ref1) {
             to = _ref1[id];
-            _results1.push(Graph.addPath(from, to, Math.round(Math.random() * 10)));
+            _results1.push(Graph.addPath(from, to, Math.round(Math.random() * 10) + 1));
           }
           return _results1;
         })());

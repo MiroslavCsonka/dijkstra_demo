@@ -21,7 +21,7 @@ if ($start === $end) {
 } else {
 	$response = array(
 		'message' => '"Nejkratší" cesta je za ' . $info['distance'] . ' bodů.',
-		'graph'   => $info['graph']
+		'through'   => $info['through']
 	);
 }
 
