@@ -1,0 +1,7 @@
+Tento projekt demonstruje základní functionalitu [Dijkstrova algoritmu](http://www.algoritmy.net/article/5108/Dijkstruv-algoritmus).
+
+
+Instalace
+============================
+
+Projekt stačí nakopírovat do vaší složky s webserverem(htdocs, www, web ...) a vejít do složky projektu přes prohlížeč.
